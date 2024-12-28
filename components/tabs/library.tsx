@@ -1,6 +1,7 @@
 import CustomText from "@/components/common/CustomText"
 import { Colors } from "@/constants/Colors"
 import { AntDesign, Ionicons, Octicons, FontAwesome6, Feather, MaterialCommunityIcons } from "@expo/vector-icons"
+import { LinearGradient } from "expo-linear-gradient"
 import React, { useEffect, useState } from "react"
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native"
 
@@ -13,7 +14,7 @@ export const SingleTag: React.FC<SingleTagProps> = ({ label }) => {
         <View style={{
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             borderRadius: 20,
-            paddingHorizontal: 20,
+            paddingHorizontal: 15,
             paddingVertical: 8
         }}>
             <CustomText
@@ -36,9 +37,10 @@ type LibraryMaterialProps = {
     subHeading?: string;
     isACircle?: boolean;
     showPin?: boolean;
+    isAGradient?: boolean;
 }
 
-export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ isACircle, showPin, image, heading, subHeading, iconName, iconBg }) => {
+export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ isAGradient, isACircle, showPin, image, heading, subHeading, iconName, iconBg }) => {
 
     return (
         <View style={{
@@ -57,13 +59,14 @@ export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ isACircl
                         height: 65,
                     }}
                     source={image} />
-                : (typeof iconName !== "undefined") ?
-                    <View
+                : (typeof isAGradient !== "undefined" && isAGradient) ?
+                    <LinearGradient
+                        colors={['#3822EA', '#A3A6E5']}
+                        start={{ x: 0.2, y: 0 }}
+                        end={{ x: 0.8, y: 1 }}
                         style={{
-                            borderRadius: (isACircle) ? 100 : 0,
                             width: 65,
                             height: 65,
-                            backgroundColor: iconBg,
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
@@ -72,7 +75,22 @@ export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ isACircl
                         <AntDesign style={{
                             textAlign: "center",
                         }} name={iconName} size={25} color={'#efefef'} />
-                    </View> : null
+                    </LinearGradient> : (typeof iconName !== "undefined") ?
+                        <View
+                            style={{
+                                borderRadius: (isACircle) ? 100 : 0,
+                                width: 65,
+                                height: 65,
+                                backgroundColor: iconBg,
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <AntDesign style={{
+                                textAlign: "center",
+                            }} name={iconName} size={25} color={'#efefef'} />
+                        </View> : null
             }
 
             <View style={{
@@ -167,13 +185,13 @@ export const TopSection = () => {
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'center',
-                    gap: 10
+                    gap: 15
                 }}>
                     <Image
                         source={require('../../assets/images/simon.jpg')}
                         style={{
-                            width: 30,
-                            height: 30,
+                            width: 35,
+                            height: 35,
                             borderRadius: 100,
                         }} />
 
@@ -215,6 +233,11 @@ export const TopSection = () => {
 export const CurrentlyPlaying = () => {
 
     const isLiked = false;
+
+    // when a device is connected, heading becomes, song name dot artist name and it has a marquee effect to the screenLeft
+    // the sub heading becomes the connected bluetooth device name in brand color
+
+    //background color of this snippet is from the background color of the currently playing song in fullscreen mode
 
     return (
         <View
