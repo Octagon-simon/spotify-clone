@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Colors } from "@/constants/Colors";
 import React from "react";
-import { AddAddables, RecentSection, SingleLibraryMaterial, TopSection } from "../../components/tabs/library";
+import { CurrentlyPlaying, RecentSection, SingleLibraryMaterial, TopSection } from "../../components/tabs/library";
 
 export default function Library() {
 
@@ -41,8 +41,8 @@ export default function Library() {
                             )
                         })
                     }
-                    <AddAddables label="artists" />
-                    <AddAddables label="podcasts" />
+                    <SingleLibraryMaterial heading="Add artists" iconName={"plus"} iconBg={Colors.grey.darkGrey}  />
+                    <SingleLibraryMaterial heading="Add podcasts" iconName={"plus"} iconBg={Colors.grey.darkGrey} />
                 </View>
 
             </ScrollView>

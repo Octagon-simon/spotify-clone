@@ -17,7 +17,8 @@ export default function RootLayout() {
     OpenSans_400Regular,
     OpenSans_500Medium,
     OpenSans_600SemiBold,
-    OpenSans_700Bold
+    OpenSans_700Bold,
+    OpenSans_800ExtraBold
   });
 
   useEffect(() => {
