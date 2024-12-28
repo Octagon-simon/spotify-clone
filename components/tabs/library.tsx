@@ -1,52 +1,8 @@
 import CustomText from "@/components/common/CustomText"
 import { Colors } from "@/constants/Colors"
-import { AntDesign, Ionicons, Octicons } from "@expo/vector-icons"
-import React from "react"
+import { AntDesign, Ionicons, Octicons, FontAwesome6, Feather } from "@expo/vector-icons"
+import React, { useEffect, useState } from "react"
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native"
-
-type LibraryMaterialProps = {
-    image: ImageSourcePropType,
-    heading: string,
-    subHeading: string,
-
-}
-export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ image, heading, subHeading }) => {
-    return (
-        <View style={{
-            display: 'flex',
-            flexDirection: 'row',
-            paddingLeft: 20,
-            paddingRight: 20,
-            alignItems: "center",
-            gap: 10
-        }}>
-            <Image
-                style={{
-                    borderRadius: 100,
-                    width: 65,
-                    height: 65,
-                }}
-                source={image} />
-
-            <View style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 5
-            }}>
-                <CustomText
-                    style={{
-                        fontFamily: "OpenSans_500Medium",
-                        fontSize: 15,
-                    }}>{heading}</CustomText>
-                <CustomText style={{
-                    fontFamily: "OpenSans_500Medium",
-                    fontSize: 13,
-                    color: '#bbb'
-                }}>{subHeading}</CustomText>
-            </View>
-        </View>
-    )
-}
 
 type SingleTagProps = {
     label: string
@@ -57,7 +13,8 @@ export const SingleTag: React.FC<SingleTagProps> = ({ label }) => {
         <View style={{
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             borderRadius: 20,
-            padding: 10
+            paddingHorizontal: 20,
+            paddingVertical: 8
         }}>
             <CustomText
                 style={{
@@ -71,9 +28,17 @@ export const SingleTag: React.FC<SingleTagProps> = ({ label }) => {
     )
 }
 
-export const AddAddables = ({ label = "podcasts" }) => {
+type LibraryMaterialProps = {
+    image?: ImageSourcePropType,
+    iconName?: any;
+    iconBg?: string;
+    heading: string;
+    subHeading?: string;
+}
 
-    const shouldHaveRadius = (label === "podcasts") ? true : false;
+export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ image, heading, subHeading, iconName, iconBg }) => {
+
+    const shouldHaveRadius = (heading.includes("podcasts")) ? true : false;
 
     return (
         <View style={{
@@ -84,27 +49,51 @@ export const AddAddables = ({ label = "podcasts" }) => {
             alignItems: "center",
             gap: 10
         }}>
-            <View
-                style={{
-                    borderRadius: (shouldHaveRadius) ? 0 : 100,
-                    width: 65,
-                    height: 65,
-                    backgroundColor: Colors.grey.darkGrey,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
-            >
-                <AntDesign style={{
-                    textAlign: "center",
-                }} name="plus" size={25} color={'#efefef'} />
-            </View>
+            {(typeof image !== "undefined") ?
+                <Image
+                    style={{
+                        borderRadius: 100,
+                        width: 65,
+                        height: 65,
+                    }}
+                    source={image} />
+                : (typeof iconName !== "undefined") ?
+                    <View
+                        style={{
+                            borderRadius: (shouldHaveRadius) ? 0 : 100,
+                            width: 65,
+                            height: 65,
+                            backgroundColor: iconBg,
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <AntDesign style={{
+                            textAlign: "center",
+                        }} name={iconName} size={25} color={'#efefef'} />
+                    </View> : null
+            }
 
-            <CustomText
-                style={{
-                    fontFamily: "OpenSans_500Medium",
-                    fontSize: 15,
-                }}>Add {label}</CustomText>
+            <View style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 5
+            }}>
+                <CustomText
+                    style={{
+                        fontFamily: "OpenSans_500Medium",
+                        fontSize: 15,
+                    }}>{heading}</CustomText>
+
+                {(typeof subHeading !== "undefined") ?
+                    <CustomText style={{
+                        fontFamily: "OpenSans_500Medium",
+                        fontSize: 13,
+                        color: '#bbb'
+                    }}>{subHeading}</CustomText>
+                    : null}
+            </View>
         </View>
     )
 }
@@ -133,7 +122,7 @@ export const RecentSection = () => {
                     transform: [{ rotate: '90deg' }]
                 }} />
                 <CustomText style={{
-                    fontFamily: "OpenSans_700Bold",
+                    fontFamily: "OpenSans_600SemiBold",
                     fontSize: 13,
                     color: '#fff'
                 }}>Recents</CustomText>
@@ -148,12 +137,12 @@ export const TopSection = () => {
     return (
         <View
             style={{
-                backgroundColor: Colors.grey.darkestGrey, 
+                backgroundColor: Colors.grey.darkestGrey,
                 borderBottomWidth: 3,
                 borderBottomColor: '#100C08',
                 shadowColor: '#000',
-                shadowOffset: { width: 0, height: 4 }, 
-                shadowOpacity: 0.3, 
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.3,
                 shadowRadius: 4,
                 elevation: 5,
             }}
@@ -163,7 +152,7 @@ export const TopSection = () => {
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'center',
-                    gap: 15
+                    gap: 10
                 }}>
                     <Image
                         source={require('../../assets/images/simon.jpg')}
@@ -175,7 +164,7 @@ export const TopSection = () => {
 
                     <CustomText style={{
                         color: '#fff',
-                        fontSize: 20,
+                        fontSize: 25,
                         textAlign: 'center',
                         fontFamily: 'OpenSans_700Bold'
                     }}>Your Library</CustomText>
@@ -191,7 +180,7 @@ export const TopSection = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 gap: 10,
-                padding: 10
+                padding: 15
             }}>
                 {
                     ["Playlists", "Albums", "Artists"].map((val, ind) => {
@@ -207,7 +196,117 @@ export const TopSection = () => {
     )
 }
 
-export default function (){
+
+export const CurrentlyPlaying = () => {
+
+    const isLiked = false;
+
+    return (
+        <View
+            style={{
+                position: 'absolute',
+                top: "78%",
+                left: 2,
+                right: 2,
+                bottom: 0,
+            }}>
+
+            <View style={{
+                margin: 'auto',
+                backgroundColor: 'rgb(48, 5, 16)',
+                borderRadius: 6,
+                width: "95%",
+
+            }}>
+                <View
+                    style={{
+                        paddingVertical: 5,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}>
+
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 10,
+                        marginLeft: 8
+                    }}>
+                        <Image
+                            style={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: 6
+                            }}
+                            source={require('../../assets/images/album-cover-1.png')}
+                        />
+                        <View style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 1
+                        }}>
+                            <CustomText style={{
+                                fontFamily: "OpenSans_700Bold",
+                                fontSize: 14,
+                            }}>Stay High</CustomText>
+                            <CustomText style={{
+                                fontFamily: "OpenSans_400Regular",
+                                fontSize: 12,
+                                color: '#bbb',
+                            }}>Juice WRLD</CustomText>
+                        </View>
+                    </View>
+
+                    <View style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: 15,
+                        marginRight: 10
+                    }}>
+                        {/* phone, plus, play/pause  */}
+                        <FontAwesome6 name="bluetooth-b" size={24} color={Colors.brand} />
+                        {(isLiked) ?
+                            <AntDesign name="checkcircle" size={25} color={Colors.brand} /> :
+                            <Feather name="plus-circle" size={25} color="#fff" />
+                        }
+                        <Ionicons name="play-sharp" size={25} color="#fff" />
+                    </View>
+
+                </View>
+                <ProgressBar />
+            </View>
+        </View>
+    )
+}
+
+const ProgressBar = () => {
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= 1) {
+                    clearInterval(interval);
+                    return 1; // Stop at 100%
+                }
+                return prev + 1 / 180; // Increment for a 3-minute duration
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <View style={styles.progressContainer}>
+            <View style={[styles.bar, { flex: progress }]} />
+            <View style={{ flex: 1 - progress, backgroundColor: 'transparent' }} />
+        </View>
+    );
+};
+
+export default function () {
     return 0 //just to pass the required default export error
 }
 
@@ -215,15 +314,28 @@ const styles = StyleSheet.create({
 
     topSectionWrapper: {
         flexDirection: 'row',
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
+        justifyContent: 'space-between',
+        alignItems: 'center',
         paddingBottom: 10,
         paddingHorizontal: 20,
     },
 
     iconsFlex: {
         flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
         gap: 15
+    },
+    progressContainer: {
+        flexDirection: 'row',
+        height: 2,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        borderRadius: 5,
+        overflow: 'hidden',
+        width: '96%',
+        margin: 'auto'
+    },
+    bar: {
+        backgroundColor: '#fff',
+        borderRadius: 5,
     },
 });

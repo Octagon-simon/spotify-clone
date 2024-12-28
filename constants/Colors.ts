@@ -27,5 +27,5 @@ export const Colors = {
     darkestGrey: "#121212",
     darkGrey: "#282828"
   },
-  brand: "#57B65F"
+  brand: "#1ed760"
 };
