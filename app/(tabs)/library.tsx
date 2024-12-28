@@ -14,12 +14,16 @@ export default function Library() {
             <ScrollView>
                 <RecentSection />
 
+
                 <View style={{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 20,
-                    marginBottom: 100
+                    marginBottom: 150
                 }}>
+
+                    <SingleLibraryMaterial heading="Liked Songs" showPin={true} subHeading="Playlist • 870 songs" iconName={"heart"} iconBg={'#3822EA'} />
+
                     {
                         [
                             { heading: "Juice World", subHeading: "Artist", image: require('../../assets/images/album-cover-1.png') },
@@ -41,7 +45,8 @@ export default function Library() {
                             )
                         })
                     }
-                    <SingleLibraryMaterial heading="Add artists" iconName={"plus"} iconBg={Colors.grey.darkGrey}  />
+
+                    <SingleLibraryMaterial heading="Add artists" isACircle={true} iconName={"plus"} iconBg={Colors.grey.darkGrey} />
                     <SingleLibraryMaterial heading="Add podcasts" iconName={"plus"} iconBg={Colors.grey.darkGrey} />
                 </View>
 

@@ -1,6 +1,6 @@
 import CustomText from "@/components/common/CustomText"
 import { Colors } from "@/constants/Colors"
-import { AntDesign, Ionicons, Octicons, FontAwesome6, Feather } from "@expo/vector-icons"
+import { AntDesign, Ionicons, Octicons, FontAwesome6, Feather, MaterialCommunityIcons } from "@expo/vector-icons"
 import React, { useEffect, useState } from "react"
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native"
 
@@ -34,11 +34,11 @@ type LibraryMaterialProps = {
     iconBg?: string;
     heading: string;
     subHeading?: string;
+    isACircle?: boolean;
+    showPin?: boolean;
 }
 
-export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ image, heading, subHeading, iconName, iconBg }) => {
-
-    const shouldHaveRadius = (heading.includes("podcasts")) ? true : false;
+export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ isACircle, showPin, image, heading, subHeading, iconName, iconBg }) => {
 
     return (
         <View style={{
@@ -60,7 +60,7 @@ export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ image, h
                 : (typeof iconName !== "undefined") ?
                     <View
                         style={{
-                            borderRadius: (shouldHaveRadius) ? 0 : 100,
+                            borderRadius: (isACircle) ? 100 : 0,
                             width: 65,
                             height: 65,
                             backgroundColor: iconBg,
@@ -87,11 +87,26 @@ export const SingleLibraryMaterial: React.FC<LibraryMaterialProps> = ({ image, h
                     }}>{heading}</CustomText>
 
                 {(typeof subHeading !== "undefined") ?
-                    <CustomText style={{
-                        fontFamily: "OpenSans_500Medium",
-                        fontSize: 13,
-                        color: '#bbb'
-                    }}>{subHeading}</CustomText>
+                    <View style={{
+                        display: "flex",
+                        flexDirection: 'row',
+                        alignItems: "center",
+                        gap: 3
+                    }}>
+                        {(typeof showPin !== "undefined" && showPin === true) ?
+                            <MaterialCommunityIcons name="pin" size={15}
+                                style={{
+                                    transform: [{ rotate: '45deg' }],
+                                }}
+                                color={Colors.brand}
+                            /> : null}
+                        <CustomText style={{
+                            fontFamily: "OpenSans_500Medium",
+                            fontSize: 13,
+                            color: '#bbb'
+                        }}>
+                            {subHeading}</CustomText>
+                    </View>
                     : null}
             </View>
         </View>
