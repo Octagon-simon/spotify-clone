@@ -4,6 +4,7 @@ import CustomText from "../common/CustomText";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 
+
 export const TopSection = () => {
     return (
         <View style={styles.topSectionWrapper}>
@@ -36,9 +37,9 @@ export const TopSection = () => {
     )
 }
 
-export const SearchInput = () => {
+export const SearchInput: React.FC<{}> = () => {
     return (
-        <View style={styles.searchContainer}>
+        <View style={[styles.searchContainer]}>
             <Ionicons name="search" size={25} color="#595959" style={styles.searchIcon} />
             <TextInput
                 style={styles.searchInput}
@@ -94,11 +95,11 @@ const SomethingNewSingle: React.FC<SomethingNewSingleProps> = ({ image, label })
     )
 }
 
-export const SomethingNew = () => {
+export const SomethingNew: React.FC<{}> = ({  }) => {
     return (
         <View
             style={{
-                paddingVertical: 20
+                paddingVertical: 30,
             }}>
             <CustomText
                 style={{
@@ -175,13 +176,15 @@ export const BrowseSingle: React.FC<BrowseSingleProps> = ({ label, image, bgColo
 }
 
 const styles = StyleSheet.create({
-
     topSectionWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: 30,
-        // paddingHorizontal: 20,
+        // paddingBottom: 30,
+        // paddingBottom: 10,
+        // paddingTop: 30,
+        // borderWidth: 1,
+        // borderColor: 'red'
     },
     iconsFlex: {
         flexDirection: 'row',
@@ -195,7 +198,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         height: 50,
-        gap: 10
+        gap: 10,
+        position: 'relative',
     },
     searchIcon: {
         color: "#000"
@@ -206,4 +210,20 @@ const styles = StyleSheet.create({
         color: '#222',
         fontFamily: 'OpenSans_700Bold'
     },
+    // stickySearch: {
+    //     paddingHorizontal: 20,
+    // },
+    // sticky: {
+    //     position: 'fixed',
+    //     top: 0,
+    //     left: 0,
+    //     right: 0,
+    //     zIndex: 1,
+    //     // backgroundColor: '#fff', // Optional, for background
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2 },
+    //     shadowOpacity: 0.25,
+    //     shadowRadius: 3.84,
+    //     elevation: 5,
+    // },
 })
