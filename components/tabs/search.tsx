@@ -1,5 +1,5 @@
 import { Image, ImageSourcePropType, StyleSheet, TextInput, View } from "react-native"
-import { AntDesign, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import CustomText from "../common/CustomText";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -95,7 +95,7 @@ const SomethingNewSingle: React.FC<SomethingNewSingleProps> = ({ image, label })
     )
 }
 
-export const SomethingNew: React.FC<{}> = ({  }) => {
+export const SomethingNew: React.FC<{}> = ({ }) => {
     return (
         <View
             style={{
@@ -180,11 +180,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // paddingBottom: 30,
-        // paddingBottom: 10,
-        // paddingTop: 30,
-        // borderWidth: 1,
-        // borderColor: 'red'
+        paddingVertical: 20,
     },
     iconsFlex: {
         flexDirection: 'row',
@@ -209,21 +205,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#222',
         fontFamily: 'OpenSans_700Bold'
-    },
-    // stickySearch: {
-    //     paddingHorizontal: 20,
-    // },
-    // sticky: {
-    //     position: 'fixed',
-    //     top: 0,
-    //     left: 0,
-    //     right: 0,
-    //     zIndex: 1,
-    //     // backgroundColor: '#fff', // Optional, for background
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 2 },
-    //     shadowOpacity: 0.25,
-    //     shadowRadius: 3.84,
-    //     elevation: 5,
-    // },
+    }
 })

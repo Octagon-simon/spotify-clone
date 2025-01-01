@@ -82,7 +82,7 @@ export default function TabLayout() {
             headerShown: true,
             headerTitle: '', // Hides the title by setting it to an empty string
             headerStyle: {
-              height: 40,
+              height: 50,
               borderBottomWidth: 0,
               shadowColor: 'transparent', // Removes shadow color
               shadowOpacity: 0, // Ensures no shadow
