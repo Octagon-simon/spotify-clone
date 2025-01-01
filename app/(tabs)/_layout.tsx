@@ -36,18 +36,15 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-          headerShown: true,
-          headerTitle: '', // Hides the title by setting it to an empty string
-          headerStyle: {
-            height: 80,
-            borderBottomWidth: 0,
-            // borderWidth: 0,
-            // borderWidth: 1,
-            // borderColor: 'red',
-            shadowColor: 'transparent', // Removes shadow color
-            shadowOpacity: 0, // Ensures no shadow
-            elevation: 0, // Removes shadow on Android
-          },
+          headerShown: false,
+          // headerTitle: '', // Hides the title by setting it to an empty string
+          // headerStyle: {
+          //   height: 80,
+          //   borderBottomWidth: 0,
+          //   shadowColor: 'transparent', // Removes shadow color
+          //   shadowOpacity: 0, // Ensures no shadow
+          //   elevation: 0, // Removes shadow on Android
+          // },
           tabBarButton: HapticTab,
           tabBarBackground: TabBarBackground, // Use the frosted glass background
           tabBarStyle: {
@@ -82,6 +79,15 @@ export default function TabLayout() {
           name="search"
           options={{
             title: 'Search',
+            headerShown: true,
+            headerTitle: '', // Hides the title by setting it to an empty string
+            headerStyle: {
+              height: 40,
+              borderBottomWidth: 0,
+              shadowColor: 'transparent', // Removes shadow color
+              shadowOpacity: 0, // Ensures no shadow
+              elevation: 0, // Removes shadow on Android
+            },
             tabBarIcon: ({ color }) => <Feather name="search" size={28} color={color} />,
           }}
         />
@@ -89,6 +95,15 @@ export default function TabLayout() {
           name="library"
           options={{
             title: 'Your Library',
+            headerShown: true,
+            headerTitle: '', // Hides the title by setting it to an empty string
+            headerStyle: {
+              height: 80,
+              borderBottomWidth: 0,
+              shadowColor: 'transparent', // Removes shadow color
+              shadowOpacity: 0, // Ensures no shadow
+              elevation: 0, // Removes shadow on Android
+            },
             tabBarIcon: ({ color }) => <MaterialCommunityIcons name="bookshelf" size={28} color={color} />,
           }}
         />
