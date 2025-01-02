@@ -1,9 +1,8 @@
-import { Image, ImageSourcePropType, StyleSheet, TextInput, View } from "react-native"
+import { Image, ImageSourcePropType, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import CustomText from "../common/CustomText";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-
 
 export const TopSection = () => {
     return (
@@ -37,16 +36,35 @@ export const TopSection = () => {
     )
 }
 
-export const SearchInput: React.FC<{}> = () => {
+type SearchInputProps = {
+    setIsSearching: (arg: boolean) => void
+}
+
+export const SearchInput: React.FC<SearchInputProps> = ({ setIsSearching }) => {
     return (
-        <View style={[styles.searchContainer]}>
-            <Ionicons name="search" size={25} color="#595959" style={styles.searchIcon} />
-            <TextInput
-                style={styles.searchInput}
-                placeholder="What do you want to listen to?"
-                placeholderTextColor="#595959"
-            />
-        </View>
+        <Pressable
+        style={({ pressed }) => [
+            styles.searchContainer,
+            pressed && { opacity: 0.7 },
+        ]}
+        onPress={() => setIsSearching(true)}
+        accessible={true}
+        accessibilityLabel="Search for music"
+    >
+        <Ionicons
+            name="search"
+            size={25}
+            color="#595959"
+            style={styles.searchIcon}
+        />
+        <TextInput
+            style={styles.searchInput}
+            placeholder="What do you want to listen to?"
+            placeholderTextColor="#595959"
+            editable={false} // Makes the input uneditable
+        />
+    </Pressable>
+    
     )
 }
 
@@ -86,7 +104,7 @@ const SomethingNewSingle: React.FC<SomethingNewSingleProps> = ({ image, label })
                     left: 5,
                     color: 'white',
                     fontSize: 14,
-                    fontFamily: "OpenSans_600SemiBold"
+                    fontFamily: "OpenSans_700Bold"
                 }}
             >
                 {'#'}{label}

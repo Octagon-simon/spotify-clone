@@ -2,10 +2,15 @@ import { StyleSheet, ScrollView, View, NativeSyntheticEvent, NativeScrollEvent }
 import { BrowseSingle, SearchInput, SomethingNew, TopSection } from '@/components/tabs/search';
 import { Colors } from '@/constants/Colors';
 import CustomText from '@/components/common/CustomText';
-import React from 'react';
+import React, { useState } from 'react';
 import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import SearchScreen from '@/components/screens/search';
 
-export default function SearchScreen() {
+type TabContentProps = {
+  setIsSearching: (arg: boolean) => void
+}
+
+const TabContent: React.FC<TabContentProps> = ({ setIsSearching }) => {
 
   const isSticky = useSharedValue(false);
 
@@ -31,7 +36,7 @@ export default function SearchScreen() {
       }}
       >
         <TopSection />
-        <SearchInput />
+        <SearchInput setIsSearching={setIsSearching} />
         <SomethingNew />
         <CustomText style={styles.browseAllText}>Browse all</CustomText>
         <View style={{
@@ -62,8 +67,19 @@ export default function SearchScreen() {
         </View>
       </ScrollView>
       <Animated.View style={[styles.searchInputContainer, searchInputStyle]}>
-        <SearchInput />
+        <SearchInput setIsSearching={setIsSearching} />
       </Animated.View>
+    </View>
+  );
+}
+
+export default function Search() {
+
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  return (
+    <View style={styles.container}>
+      {(isSearching) ? <SearchScreen setIsSearching={setIsSearching} /> : <TabContent setIsSearching={setIsSearching} />}
     </View>
   );
 }
