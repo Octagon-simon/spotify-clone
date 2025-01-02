@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Colors } from "@/constants/Colors";
 import React from "react";
-import { CurrentlyPlaying, RecentSection, SingleLibraryMaterial, TopSection } from "../../components/tabs/library";
+import { RecentSection, SingleLibraryMaterial, TopSection } from "../../components/tabs/library";
 
 export default function Library() {
 
@@ -20,9 +20,9 @@ export default function Library() {
                     gap: 20,
                     marginBottom: 150
                 }}>
-
+                    {/* the dot */}
                     <SingleLibraryMaterial isAGradient={true} heading="Liked Songs" showPin={true} subHeading="Playlist • 870 songs" iconName={"heart"} iconBg={'#3822EA'} />
-                    
+
                     {
                         [
                             { heading: "Juice World", subHeading: "Artist", image: require('../../assets/images/album-cover-1.png') },
