@@ -17,6 +17,7 @@ const TopSection: React.FC<TopSectionProps> = ({ setIsSearching }) => {
             backgroundColor: Colors.grey.darkGrey,
             paddingVertical: 20,
             paddingHorizontal: 10,
+            alignItems: "center",
         }}>
             <TouchableOpacity onPress={() => setIsSearching(false)}>
                 <Ionicons name="arrow-back-sharp" size={24} color="#fff" />
