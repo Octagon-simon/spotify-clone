@@ -72,6 +72,16 @@ export default function TabLayout() {
           name="index"
           options={{
             title: 'Home',
+            headerShown: true,
+            headerTitle: '', // Hides the title by setting it to an empty string
+            headerStyle: {
+              height: 30,
+              borderBottomWidth: 0,
+              shadowColor: 'transparent', // Removes shadow color
+              shadowOpacity: 0, // Ensures no shadow
+              elevation: 0, // Removes shadow on Android
+              backgroundColor: Colors.grey.darkestGrey
+            },
             tabBarIcon: ({ color }) => <Foundation name="home" size={28} color={color} />,
           }}
         />
@@ -87,6 +97,7 @@ export default function TabLayout() {
               shadowColor: 'transparent', // Removes shadow color
               shadowOpacity: 0, // Ensures no shadow
               elevation: 0, // Removes shadow on Android
+              backgroundColor: Colors.grey.darkestGrey
             },
             tabBarIcon: ({ color }) => <Feather name="search" size={28} color={color} />,
           }}
