@@ -344,10 +344,6 @@ const ProgressBar = () => {
     );
 };
 
-export default function () {
-    return 0 //just to pass the required default export error
-}
-
 const styles = StyleSheet.create({
 
     topSectionWrapper: {
