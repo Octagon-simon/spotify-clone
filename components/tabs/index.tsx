@@ -31,6 +31,7 @@ const SingleTag: React.FC<SingleTagProps> = ({ label, isSelected }) => {
         </View>
     )
 }
+
 export const TopSection = () => {
 
     const [selectedId, setSelectedId] = useState<number>(0);
@@ -142,10 +143,36 @@ export const SingleMaterial: React.FC<SingleMaterialProps> = ({ isAGradient, ima
     )
 }
 
-export const Mixes = () => {
-    return(
-        <>
-        
-        </>
+type AlbumsWithTitlesProps = {
+    image: ImageSourcePropType,
+    heading?: string,
+    subHeading: string
+}
+
+export const AlbumsWithTitles: React.FC<AlbumsWithTitlesProps> = ({ image, heading, subHeading }) => {
+    return (
+        <View style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 5,
+        }}>
+            <Image source={image} style={{
+                borderRadius: 8,
+                width: 150,
+                height: 150,
+            }} />
+            {(typeof heading !== 'undefined') ?
+                <CustomText style={{
+                    fontFamily: 'OpenSans_500Medium',
+                    fontSize: 16,
+                }}>{heading}</CustomText> : null}
+            <View style={{
+                width: 150,
+            }}>
+                <CustomText style={{
+                    fontSize: 12,
+                }}>{subHeading}</CustomText>
+            </View>
+        </View>
     )
 }
