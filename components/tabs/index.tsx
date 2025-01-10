@@ -3,7 +3,7 @@ import CustomText from "../common/CustomText"
 import { Colors } from "@/constants/Colors";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 
 type SingleTagProps = {
     label: string;
@@ -76,9 +76,10 @@ type SingleMaterialProps = {
     iconName?: any;
     label: string;
     isAGradient?: boolean;
+    isCurrentlyPlaying?: boolean;
 }
 
-export const SingleMaterial: React.FC<SingleMaterialProps> = ({ isAGradient, image, iconName, label }) => {
+export const SingleMaterial: React.FC<SingleMaterialProps> = ({ isAGradient, isCurrentlyPlaying, image, iconName, label }) => {
 
     return (
         <View style={{
@@ -122,23 +123,27 @@ export const SingleMaterial: React.FC<SingleMaterialProps> = ({ isAGradient, ima
                             color={'#efefef'} />
                     </LinearGradient> : null
             }
-
+            {/*fixed text wrapping issue with this https://github.com/facebook/react-native/issues/1438#issuecomment-268173093 */}
             <View style={{
                 gap: 5,
-                display: 'flex',
                 flexDirection: 'row',
-                width: '50%'
+                flex: 1,
+                flexWrap: 'wrap'
             }}>
                 <CustomText
                     style={{
                         fontFamily: "OpenSans_500Medium",
                         fontSize: 12,
-                        flexShrink: 1
                     }}>
                     {label}
                 </CustomText>
 
             </View>
+
+            {(typeof isCurrentlyPlaying !== 'undefined' && isCurrentlyPlaying) ?
+                <View>
+                    <MaterialIcons name="equalizer" size={24} color={Colors.brand} />
+                </View> : null}
         </View>
     )
 }

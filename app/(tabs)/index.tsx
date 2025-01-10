@@ -20,16 +20,16 @@ export default function HomeScreen() {
               { label: "Pressure", image: require("../../assets/images/album-cover-6.jpg") },
               { label: "Can't take my eyes off of you", image: require("../../assets/images/album-cover-3.jpg") },
               { label: "Gloria Gaynor", image: require("../../assets/images/album-cover-2.jpg") },
-              { label: "On Repeat", image: require("../../assets/images/album-cover-1.png") },
+              { label: "On Repeat", image: require("../../assets/images/album-cover-1.png"), isCurrentlyPlaying: true },
               { label: "Release Radar", image: require("../../assets/images/album-cover-4.jpg") },
-              { label: "Daily mix 1", image: require("../../assets/images/album-cover-4.jpg") },
+              { label: "Daily mix 1", image: require("../../assets/images/album-cover-5.jpg") },
             ]
               .map((item, ind) => (
                 <View key={ind}
                   style={{
                     width: '48%',
                   }}>
-                  <SingleMaterial label={item.label} image={item.image} isAGradient={item?.isAGradient} iconName={item?.iconName} />
+                  <SingleMaterial isCurrentlyPlaying={item?.isCurrentlyPlaying} label={item.label} image={item.image} isAGradient={item?.isAGradient} iconName={item?.iconName} />
                 </View>
               ))
           }
@@ -83,7 +83,7 @@ export default function HomeScreen() {
             contentContainerStyle={{
               gap: 15
             }}
-            >
+          >
 
             {
               [
@@ -118,7 +118,7 @@ export default function HomeScreen() {
             contentContainerStyle={{
               gap: 15
             }}
-            >
+          >
 
             {
               [
