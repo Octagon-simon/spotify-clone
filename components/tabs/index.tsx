@@ -4,6 +4,7 @@ import { Colors } from "@/constants/Colors";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import EqualizerAnimation from "../common/EqualizerAnimation";
 
 type SingleTagProps = {
     label: string;
@@ -139,11 +140,9 @@ export const SingleMaterial: React.FC<SingleMaterialProps> = ({ isAGradient, isC
                 </CustomText>
 
             </View>
-
             {(typeof isCurrentlyPlaying !== 'undefined' && isCurrentlyPlaying) ?
-                <View>
-                    <MaterialIcons name="equalizer" size={24} color={Colors.brand} />
-                </View> : null}
+                <EqualizerAnimation />
+                 : null}
         </View>
     )
 }
